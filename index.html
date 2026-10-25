@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Bahan Ajar UT</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navbar Konsisten -->
+        <nav class="navbar">
+            <div class="nav-brand">📚 UT Bahan Ajar</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">🏠 Beranda</a>
+                <a href="stok.html">📦 Stok Bahan Ajar</a>
+                <a href="tracking.html">🚚 Tracking DO</a>
+            </div>
+        </nav>
+
+        <!-- Main Content / Dashboard -->
+        <main class="container">
+            <div class="hero-section">
+                <h1>Selamat Datang di Sistem Informasi Bahan Ajar UT</h1>
+                <p>Kelola inventaris stok UPBJJ dan lacak pengiriman Delivery Order (DO) dengan mudah menggunakan Vue.js.</p>
+            </div>
+
+            <!-- Dashboard Cards / 2 Menu Utama -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📦 Stok Bahan Ajar</h3>
+                    <p class="stat-number">{{ totalStok }}</p>
+                    <p>Total jenis bahan ajar terdaftar</p>
+                    <a href="stok.html" class="btn-card">Kelola Stok &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>🚚 Tracking Delivery Order</h3>
+                    <p class="stat-number">{{ totalPaket }}</p>
+                    <p>Paket bahan ajar siap kirim</p>
+                    <a href="tracking.html" class="btn-card">Lihat Tracking &rarr;</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Panggil Vue.js dan file data -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.min.js"></script>
+    <script src="js/dataBahanAjar.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                stok: dbBahanAjar.stok,
+                paket: dbBahanAjar.paket
+            },
+            computed: {
+                totalStok() {
+                    return this.stok.length;
+                },
+                totalPaket() {
+                    return this.paket.length;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
